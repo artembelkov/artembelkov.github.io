@@ -30,13 +30,12 @@
     body {
       min-height: 100vh;
       background:
-      radial-gradient(600px at 20% 20%, rgba(56,189,248,0.45), transparent),
-      radial-gradient(600px at 80% 30%, rgba(129,140,248,0.45), transparent),
-      radial-gradient(500px at 50% 80%, rgba(34,211,238,0.35), transparent),
-      #f8fafc;
-      color: #0f172a;
+        radial-gradient(600px at 20% 20%, rgba(56,189,248,0.45), transparent),
+        radial-gradient(600px at 80% 30%, rgba(129,140,248,0.45), transparent),
+        radial-gradient(500px at 50% 80%, rgba(34,211,238,0.35), transparent),
+        #f8fafc;
+      color: var(--text-main);
     }
-
 
     a {
       color: #2563eb;
@@ -93,7 +92,7 @@
 
     /* SECTIONS */
     section {
-      margin-bottom: 120px;
+      margin-bottom: 80px;
     }
 
     section h2 {
@@ -114,6 +113,31 @@
       border-radius: 999px;
     }
 
+    /* Clean Experience Stack */
+    .experience-stack {
+      display: grid;
+      gap: 36px;
+    }
+
+    .experience-item h3 {
+      font-size: 1.15rem;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+
+    .experience-item span {
+      display: block;
+      font-size: 0.8rem;
+      color: var(--text-main);
+      margin-bottom: 8px;
+    }
+
+    .experience-item p {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
     /* CARDS */
     .grid {
       display: grid;
@@ -122,50 +146,49 @@
     }
 
     .card {
-  position: relative;
-  border-radius: 24px;
-  padding: 0; /* remove padding from blurred container */
-  overflow: hidden;
+      position: relative;
+      border-radius: 24px;
+      padding: 0;
+      overflow: hidden;
 
-  /* glass background */
-  background: rgba(255, 255, 255, 0.35);
-  border: 1px solid rgba(255, 255, 255, 0.5);
-  backdrop-filter: blur(28px) saturate(180%);
-  -webkit-backdrop-filter: blur(28px) saturate(180%);
-  box-shadow: 0 30px 60px rgba(15, 23, 42, 0.18),
-              inset 0 1px 0 rgba(255, 255, 255, 0.7);
-  transition: transform 0.35s ease, box-shadow 0.35s ease;
-}
+      /* glass background */
+      background: rgba(255, 255, 255, 0.35);
+      border: 1px solid rgba(255, 255, 255, 0.5);
+      backdrop-filter: blur(28px) saturate(180%);
+      -webkit-backdrop-filter: blur(28px) saturate(180%);
+      box-shadow: 0 30px 60px rgba(15, 23, 42, 0.18),
+                  inset 0 1px 0 rgba(255, 255, 255, 0.7);
+      transition: transform 0.35s ease, box-shadow 0.35s ease;
+    }
 
-/* Highlight / reflection */
-.card::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    120deg,
-    rgba(255, 255, 255, 0.6),
-    rgba(255, 255, 255, 0.15) 35%,
-    transparent 60%
-  );
-  pointer-events: none;
-}
+    /* Highlight / reflection */
+    .card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        120deg,
+        rgba(255, 255, 255, 0.6),
+        rgba(255, 255, 255, 0.15) 35%,
+        transparent 60%
+      );
+      pointer-events: none;
+    }
 
-/* Inner content: text stays sharp */
-.card-content {
-  position: relative;
-  padding: 36px;
-  z-index: 1;
-  color: #0f172a; /* text color for light mode */
-}
+    /* Inner content: text stays sharp */
+    .card-content {
+      position: relative;
+      padding: 36px;
+      z-index: 1;
+      color: var(--text-main);
+    }
 
     .card:hover {
-  transform: translateY(-10px);
-  box-shadow:
-    0 50px 100px rgba(15, 23, 42, 0.22),
-    inset 0 1px 0 rgba(255, 255, 255, 0.75);
-}
-
+      transform: translateY(-10px);
+      box-shadow:
+        0 50px 100px rgba(15, 23, 42, 0.22),
+        inset 0 1px 0 rgba(255, 255, 255, 0.75);
+    }
 
     .card h3 {
       font-size: 1.15rem;
@@ -222,79 +245,76 @@
       </div>
     </header>
 
-<section>
-  <h2>Projects</h2>
+    <!-- PROJECTS -->
+    <section>
+      <h2>Projects</h2>
 
-  <div class="grid">
-    <!-- Project 1 -->
-    <div class="card">
-      <div class="card-content">
-        <h3>AML in European Banking</h3>
-        <p>
-          Research project analyzing anti-money laundering mechanisms
-          in the European banking sector. Focused on risk assessment
-          and compliance frameworks.
-        </p>
-        <a href="#">View project →</a>
+      <div class="grid">
+        <!-- Project 1 -->
+        <div class="card">
+          <div class="card-content">
+            <h3>AML in European Banking</h3>
+            <p>
+              Research project analyzing anti-money laundering mechanisms
+              in the European banking sector. Focused on risk assessment
+              and compliance frameworks.
+            </p>
+            <a href="#">View project →</a>
+          </div>
+        </div>
+
+        <!-- Project 2 -->
+        <div class="card">
+          <div class="card-content">
+            <h3>Financial Analysis Toolkit</h3>
+            <p>
+              Excel-based models for financial statement analysis,
+              forecasting, and valuation.
+            </p>
+            <a href="#">View project →</a>
+          </div>
+        </div>
+
+        <!-- Project 3 -->
+        <div class="card">
+          <div class="card-content">
+            <h3>Data Analytics Practice</h3>
+            <p>
+              Practical analytics exercises using real-world
+              business datasets to derive actionable insights.
+            </p>
+            <a href="#">View project →</a>
+          </div>
+        </div>
       </div>
-    </div>
+    </section>
 
-    <!-- Project 2 -->
-    <div class="card">
-      <div class="card-content">
-        <h3>Financial Analysis Toolkit</h3>
-        <p>
-          Excel-based models for financial statement analysis,
-          forecasting, and valuation.
-        </p>
-        <a href="#">View project →</a>
+    <!-- EXPERIENCE -->
+    <section>
+      <h2>Experience</h2>
+
+      <div class="experience-stack">
+        <!-- Experience 1 -->
+        <div class="experience-item">
+          <h3>Senior Manager — Online English School</h3>
+          <span>2023 – Present</span>
+          <p>
+            Managed CRM, HR, and customer support operations. Improved retention and
+            achieved an 88% customer satisfaction score.
+          </p>
+        </div>
+
+        <!-- Experience 2 -->
+        <div class="experience-item">
+          <h3>Founder — Youth English Club (NGO)</h3>
+          <span>2022 – Present</span>
+          <p>
+            Founded and led an international NGO recognized with the European Citizen’s Prize
+            for social impact.
+          </p>
+        </div>
       </div>
-    </div>
-
-    <!-- Project 3 -->
-    <div class="card">
-      <div class="card-content">
-        <h3>Data Analytics Practice</h3>
-        <p>
-          Practical analytics exercises using real-world
-          business datasets to derive actionable insights.
-        </p>
-        <a href="#">View project →</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section>
-  <h2>Experience</h2>
-
-  <div class="stack">
-    <!-- Experience 1 -->
-    <div class="card">
-      <div class="card-content">
-        <h3>Senior Manager — Online English School</h3>
-        <p><strong>2023 – Present</strong></p>
-        <p>
-          Managed CRM, HR, and customer support operations. Improved
-          retention and achieved an 88% customer satisfaction score.
-        </p>
-      </div>
-    </div>
-
-    <!-- Experience 2 -->
-    <div class="card">
-      <div class="card-content">
-        <h3>Founder — Youth English Club (NGO)</h3>
-        <p><strong>2022 – Present</strong></p>
-        <p>
-          Founded and led an international NGO recognized with
-          the European Citizen’s Prize for social impact.
-        </p>
-      </div>
-    </div>
-  </div>
-</section>
-
+    </section>
 
     <!-- EDUCATION -->
     <section>
@@ -310,8 +330,8 @@
 
         <div class="card">
           <div class="card-content">
-          <h3>Corporate Finance Certification</h3>
-          <p>CFI — Financial Modeling & Valuation Analyst (FMVA®)</p>
+            <h3>Corporate Finance Certification</h3>
+            <p>CFI — Financial Modeling & Valuation Analyst (FMVA®)</p>
           </div>
         </div>
       </div>
