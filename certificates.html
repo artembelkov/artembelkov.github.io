@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Artem Belkov - Certificates</title>
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+
+  <!-- Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    :root {
+      --bg-main: #f8fafc;
+      --glass: rgba(255, 255, 255, 0.65);
+      --border: rgba(15, 23, 42, 0.08);
+      --text-main: #0f172a;
+      --text-muted: #475569;
+      --accent1: #38bdf8;
+      --accent2: #818cf8;
+      --accent3: #22d3ee;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Inter", sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      background:
+        radial-gradient(600px at 20% 20%, rgba(56,189,248,0.45), transparent),
+        radial-gradient(600px at 80% 30%, rgba(129,140,248,0.45), transparent),
+        radial-gradient(500px at 50% 80%, rgba(34,211,238,0.35), transparent),
+        #f8fafc;
+      color: var(--text-main);
+    }
+
+    a {
+      color: #2563eb;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    a:hover {
+      color: var(--accent2);
+    }
+
+    .container {
+      max-width: 1120px;
+      margin: auto;
+      padding: 40px 24px;
+    }
+
+    /* Navigation Back Button */
+    .nav-back {
+      margin-bottom: 40px;
+    }
+
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 24px;
+      border-radius: 50px;
+      background: rgba(255, 255, 255, 0.35);
+      border: 1px solid rgba(255, 255, 255, 0.5);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      color: var(--text-main);
+      font-weight: 500;
+      box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+      transition: all 0.3s ease;
+    }
+
+    .back-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 15px 40px rgba(15, 23, 42, 0.12);
+      background: rgba(255, 255, 255, 0.5);
+    }
+
+    /* HERO */
+    header {
+      margin-bottom: 60px;
+    }
+
+    header h1 {
+      font-size: clamp(2.8rem, 6vw, 3.8rem);
+      font-weight: 700;
+      background: linear-gradient(135deg, var(--accent1), var(--accent2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 20px;
+    }
+
+    header p {
+      max-width: 720px;
+      font-size: 1.15rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 32px;
+    }
+
+    .tag {
+      padding: 7px 16px;
+      font-size: 0.75rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      border-radius: 999px;
+      background: linear-gradient(
+        135deg,
+        rgba(56,189,248,0.25),
+        rgba(129,140,248,0.25)
+      );
+      border: 1px solid var(--border);
+      backdrop-filter: blur(8px);
+    }
+
+    /* SECTIONS */
+    section {
+      margin-bottom: 80px;
+    }
+
+    section h2 {
+      font-size: 1.7rem;
+      font-weight: 600;
+      margin-bottom: 40px;
+      position: relative;
+    }
+
+    section h2::after {
+      content: "";
+      width: 46px;
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent1), var(--accent2));
+      position: absolute;
+      left: 0;
+      bottom: -14px;
+      border-radius: 999px;
+    }
+
+    /* Certificates Grid */
+    .certificates-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 34px;
+    }
+
+    .certificate-card {
+      position: relative;
+      border-radius: 24px;
+      overflow: hidden;
+      height: 100%;
+      
+      /* glass background */
+      background: rgba(255, 255, 255, 0.35);
+      border: 1px solid rgba(255, 255, 255, 0.5);
+      backdrop-filter: blur(28px) saturate(180%);
+      -webkit-backdrop-filter: blur(28px) saturate(180%);
+      box-shadow: 0 30px 60px rgba(15, 23, 42, 0.18),
+                  inset 0 1px 0 rgba(255, 255, 255, 0.7);
+      transition: transform 0.35s ease, box-shadow 0.35s ease;
+    }
+
+    /* Highlight / reflection */
+    .certificate-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        120deg,
+        rgba(255, 255, 255, 0.6),
+        rgba(255, 255, 255, 0.15) 35%,
+        transparent 60%
+      );
+      pointer-events: none;
+    }
+
+    /* Certificate content */
+    .certificate-content {
+      position: relative;
+      padding: 36px;
+      z-index: 1;
+      color: var(--text-main);
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+
+    .certificate-card:hover {
+      transform: translateY(-10px);
+      box-shadow:
+        0 50px 100px rgba(15, 23, 42, 0.22),
+        inset 0 1px 0 rgba(255, 255, 255, 0.75);
+    }
+
+    .certificate-icon {
+      width: 60px;
+      height: 60px;
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 24px;
+      background: linear-gradient(135deg, rgba(56,189,248,0.2), rgba(129,140,248,0.2));
+      color: var(--accent2);
+      font-size: 1.8rem;
+    }
+
+    .certificate-content h3 {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: 12px;
+      line-height: 1.4;
+    }
+
+    .certificate-issuer {
+      font-size: 0.95rem;
+      color: var(--accent1);
+      font-weight: 500;
+      margin-bottom: 10px;
+    }
+
+    .certificate-date {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-bottom: 20px;
+    }
+
+    .certificate-description {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+      margin-bottom: 24px;
+      flex-grow: 1;
+    }
+
+    .certificate-links {
+      display: flex;
+      gap: 16px;
+      margin-top: auto;
+    }
+
+    .certificate-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      padding: 8px 16px;
+      border-radius: 50px;
+      background: rgba(56, 189, 248, 0.1);
+      border: 1px solid rgba(56, 189, 248, 0.2);
+      transition: all 0.3s ease;
+    }
+
+    .certificate-link:hover {
+      background: rgba(56, 189, 248, 0.2);
+      transform: translateY(-2px);
+    }
+
+    .certificate-link.view {
+      background: linear-gradient(135deg, rgba(56,189,248,0.15), rgba(129,140,248,0.15));
+      border: 1px solid rgba(129, 140, 248, 0.3);
+    }
+
+    /* FOOTER */
+    footer {
+      text-align: center;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      padding-top: 40px;
+      border-top: 1px solid var(--border);
+    }
+
+    footer a {
+      margin: 0 12px;
+    }
+
+    @media (max-width: 768px) {
+      .certificates-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .container {
+        padding: 30px 20px;
+      }
+      
+      .certificate-links {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+
+    <!-- Navigation -->
+    <div class="nav-back">
+      <a href="index.html" class="back-btn">
+        <i class="fas fa-arrow-left"></i>
+        Back to Main Portfolio
+      </a>
+    </div>
+
+    <!-- HERO -->
+    <header>
+      <h1>Artem Belkov</h1>
+      <p>
+        Professional certifications and credentials that validate my expertise in finance, 
+        accounting, data analysis, and business administration. Each certificate represents 
+        specialized knowledge and skills gained through rigorous study and practical application.
+      </p>
+
+      <div class="tags">
+        <div class="tag">Finance</div>
+        <div class="tag">Accounting</div>
+        <div class="tag">Data Analysis</div>
+        <div class="tag">Business Administration</div>
+        <div class="tag">Certifications</div>
+      </div>
+    </header>
+
+    <!-- CERTIFICATES -->
+    <section>
+      <h2>Certificates & Credentials</h2>
+
+      <div class="certificates-grid">
+        <!-- Certificate 1 -->
+        <div class="certificate-card">
+          <div class="certificate-content">
+            <div class="certificate-icon">
+              <i class="fas fa-chart-line"></i>
+            </div>
+            
+            <h3>Financial Modeling & Valuation Analyst (FMVA®)</h3>
+            <div class="certificate-issuer">Corporate Finance Institute</div>
+            <div class="certificate-date">Issued: 2024 · Credential ID: FMVA123456</div>
+            
+            <p class="certificate-description">
+              Comprehensive certification covering financial modeling, valuation, 
+              budgeting, and forecasting. Mastered advanced Excel, corporate finance, 
+              and business valuation techniques.
+            </p>
+            
+            <div class="certificate-links">
+              <a href="#" class="certificate-link view">
+                <i class="fas fa-external-link-alt"></i>
+                View Certificate
+              </a>
+              <a href="#" class="certificate-link">
+                <i class="fas fa-info-circle"></i>
+                Details
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Certificate 2 -->
+        <div class="certificate-card">
+          <div class="certificate-content">
+            <div class="certificate-icon">
+              <i class="fas fa-database"></i>
+            </div>
+            
+            <h3>Data Analysis with Python</h3>
+            <div class="certificate-issuer">University of Helsinki</div>
+            <div class="certificate-date">Issued: 2024 · Credential ID: MOOC-2024-PYTHON</div>
+            
+            <p class="certificate-description">
+              Intensive course covering data manipulation, analysis, and visualization 
+              using Python libraries (Pandas, NumPy, Matplotlib). Focused on practical 
+              applications for business intelligence.
+            </p>
+            
+            <div class="certificate-links">
+              <a href="#" class="certificate-link view">
+                <i class="fas fa-external-link-alt"></i>
+                View Certificate
+              </a>
+              <a href="#" class="certificate-link">
+                <i class="fas fa-info-circle"></i>
+                Details
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Certificate 3 -->
+        <div class="certificate-card">
+          <div class="certificate-content">
+            <div class="certificate-icon">
+              <i class="fas fa-file-invoice-dollar"></i>
+            </div>
+            
+            <h3>International Financial Reporting Standards (IFRS)</h3>
+            <div class="certificate-issuer">Association of Chartered Certified Accountants (ACCA)</div>
+            <div class="certificate-date">Issued: 2023 · Credential ID: ACCA-IFRS-2023</div>
+            
+            <p class="certificate-description">
+              Certification demonstrating proficiency in IFRS principles and their application 
+              in financial reporting. Covers recognition, measurement, presentation, and 
+              disclosure requirements.
+            </p>
+            
+            <div class="certificate-links">
+              <a href="#" class="certificate-link view">
+                <i class="fas fa-external-link-alt"></i>
+                View Certificate
+              </a>
+              <a href="#" class="certificate-link">
+                <i class="fas fa-info-circle"></i>
+                Details
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Certificate 4 -->
+        <div class="certificate-card">
+          <div class="certificate-content">
+            <div class="certificate-icon">
+              <i class="fas fa-user-tie"></i>
+            </div>
+            
+            <h3>Leadership & Management Development</h3>
+            <div class="certificate-issuer">University of Tartu Executive Education</div>
+            <div class="certificate-date">Issued: 2023 · Credential ID: UT-LEAD-2023</div>
+            
+            <p class="certificate-description">
+              Executive program focusing on strategic leadership, team management, 
+              and organizational development. Includes practical case studies from 
+              European business environment.
+            </p>
+            
+            <div class="certificate-links">
+              <a href="#" class="certificate-link view">
+                <i class="fas fa-external-link-alt"></i>
+                View Certificate
+              </a>
+              <a href="#" class="certificate-link">
+                <i class="fas fa-info-circle"></i>
+                Details
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Certificate 5 -->
+        <div class="certificate-card">
+          <div class="certificate-content">
+            <div class="certificate-icon">
+              <i class="fas fa-chart-pie"></i>
+            </div>
+            
+            <h3>Advanced Excel for Financial Analysis</h3>
+            <div class="certificate-issuer">Coursera</div>
+            <div class="certificate-date">Issued: 2023 · Credential ID: COURSERA-EXCEL-2023</div>
+            
+            <p class="certificate-description">
+              Mastered advanced Excel functions, macros, and automation techniques 
+              specifically for financial modeling and analysis. Includes practical 
+              applications for business scenarios.
+            </p>
+            
+            <div class="certificate-links">
+              <a href="#" class="certificate-link view">
+                <i class="fas fa-external-link-alt"></i>
+                View Certificate
+              </a>
+              <a href="#" class="certificate-link">
+                <i class="fas fa-info-circle"></i>
+                Details
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Certificate 6 -->
+        <div class="certificate-card">
+          <div class="certificate-content">
+            <div class="certificate-icon">
+              <i class="fas fa-shield-alt"></i>
+            </div>
+            
+            <h3>Anti-Money Laundering (AML) Compliance</h3>
+            <div class="certificate-issuer">European Banking Federation</div>
+            <div class="certificate-date">Issued: 2024 · Credential ID: EBF-AML-2024</div>
+            
+            <p class="certificate-description">
+              Specialized training in AML regulations, risk assessment, and compliance 
+              frameworks within European banking sector. Includes KYC procedures and 
+              suspicious activity reporting.
+            </p>
+            
+            <div class="certificate-links">
+              <a href="#" class="certificate-link view">
+                <i class="fas fa-external-link-alt"></i>
+                View Certificate
+              </a>
+              <a href="#" class="certificate-link">
+                <i class="fas fa-info-circle"></i>
+                Details
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+      <p>
+        artembelkov.ee@gmail.com ·
+        <a href="https://www.linkedin.com/in/artembelkov/"><i class="fab fa-linkedin"></i> LinkedIn</a> ·
+        <a href="https://github.com/artembelkov"><i class="fab fa-github"></i> GitHub</a>
+      </p>
+      <p style="margin-top: 10px; font-size: 0.85rem;">
+        © 2025 Artem Belkov. All certificates are verifiable through issuing organizations.
+      </p>
+    </footer>
+
+  </div>
+
+  <script>
+    // Simple script for smooth back button behavior
+    document.querySelector('.back-btn').addEventListener('click', function(e) {
+      // If we're already on the main site, this would navigate back
+      // If testing locally, we might want to prevent default and show a message
+      if (window.location.protocol === 'file:') {
+        e.preventDefault();
+        alert('Note: In a live environment, this button would navigate back to your main portfolio page.');
+      }
+    });
+  </script>
+</body>
+</html>
