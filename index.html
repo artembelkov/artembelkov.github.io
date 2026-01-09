@@ -201,6 +201,20 @@
       font-size: 0.95rem;
       color: var(--text-muted);
     }
+    
+    .card-link {
+  text-decoration: none;
+  display: block;
+  border-radius: 24px; /* Match card radius */
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+
+.card-link:hover {
+  transform: translateY(-10px);
+  box-shadow:
+    0 50px 100px rgba(15, 23, 42, 0.22),
+    inset 0 1px 0 rgba(255, 255, 255, 0.75);
+}
 
     /* STACK (for Education etc.) */
     .stack {
@@ -361,13 +375,14 @@
           </div>
         </div>
 
-        <div class="card">
-          <div class="card-content">
-            <h3>Financial Modeling & Valuation Analyst (FMVA®)</h3>
-            <p>Corporate Finance Institute - Full Scholarship</p>
-          </div>
-        </div>
-      </div>
+        <a href="https://example.com/your-bida-page" target="_blank" class="card-link">
+  <div class="card">
+    <div class="card-content">
+      <h3>Financial Modeling & Valuation Analyst (FMVA®)</h3>
+      <p>Corporate Finance Institute - Full Scholarship</p>
+    </div>
+  </div>
+</a>
     </section>
 
     <!-- FOOTER -->
